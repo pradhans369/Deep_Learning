@@ -1,5 +1,6 @@
 # When we write x = 4/2, py automatically divides the numbers and assigns 2 to the x.
 # Now we are going to create a datatype, that will store fraction x = 4/2 directly.
+import math
 
 class Fraction:
     def __init__(self, n, d):
@@ -82,6 +83,16 @@ class Fraction:
         other = self._to_fraction(other)        # For right-hand division (e.g. 3 / a), it is other / self
         return other.__truediv__(self)
 
+    # --------------------------------------------------------------
+
+    # simplifying a fraction
+    def simplify(self):
+        common = math.gcd(self.num, self.den)
+        num = self.num // common
+        den = self .den // common
+
+        return Fraction(num, den)
+
 
 # **************************************************************************************************
 a = Fraction(4, 2)
@@ -91,6 +102,10 @@ print(a)
 
 
 b = Fraction(6, 8)
+
+print(a.simplify())
+print(a.num)
+print(a.den)
 print(a + 5)
 print(4 + a)
 print('SUBSTRACTION\n', a - 10)
